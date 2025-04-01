@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
               const json = JSON.parse(resposta.replace("System.Collections.ArrayList", ""))
               if (json.statusCode === 200) {
 
+                  // Mostra mensagem de email enviado...
                   document.getElementById('showFormulario').setAttribute('showFormulario', showFormulario)
                   document.getElementById('showSendMessage').setAttribute('showSendMessage', showSendMessage)
 
@@ -327,7 +328,7 @@ document.getElementById("colaboradores").addEventListener("input", (e) => {
 })
 
 
-/* Popup */
+// Popup - Mostra quando o mouse sai da página
 const popup = document.getElementById('popup')
 let callPopup = true
 
@@ -348,14 +349,19 @@ const showPopup = () => {
   console.log('Fechar popup');
   closed.classList.remove('popup__lowFade--in')
   closed.classList.add('popup__lowFade--out')
-  setTimeout(() => popup.setAttribute('closed', ''), 1000);
+  setTimeout(() => {
+    closed.classList.remove('popup__lowFade--out')
+    popup.setAttribute('closed', '')
+  }, 1000);
 }
 
-/* Popup formulário */
+
+// Popup formulário
 let handleForms = true
 const formContent = document.getElementById('formContent')
-const openFormulario = () => {
 
+const openFormulario = () => {
+  console.log(formContent);
   if(handleForms) {
     formContent.classList.remove('popup__lowFade--out')
     formContent.classList.add('popup__lowFade--in')
@@ -363,13 +369,17 @@ const openFormulario = () => {
   } else {
     formContent.classList.remove('popup__lowFade--in')
     formContent.classList.add('popup__lowFade--out')
-    setTimeout(() => formContent.setAttribute('showFormulario', ''), 1000);
+    setTimeout(() => {
+      formContent.classList.remove('popup__lowFade--out')
+      formContent.setAttribute('showFormulario', '')
+    }, 1000);
   }
 
   handleForms = !handleForms
 }
 
-// Scroll Personalizado: O GSAP é utilizado para animar o scroll suave
+
+// Scroll personalizado: O GSAP é utilizado para animar o scroll suave
 gsap.registerPlugin(ScrollToPlugin);
 
 let scrollY = 0;

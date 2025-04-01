@@ -894,31 +894,6 @@ footer {
   gap: 12px;
   align-items: center;
 }
-[closed] {
-  display: none;
-}
-.popup__lowFade--in {
-  animation: 1s lowFade--in forwards;
-}
-@keyframes lowFade--in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.popup__lowFade--out {
-  animation: 1s lowFade--out forwards;
-}
-@keyframes lowFade--out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
 @media screen and (max-width: 1000px) {
   /* Estilos globais */
   * {
@@ -1081,7 +1056,7 @@ footer {
 
 /* Formulário ↓ */
 .forms__popup {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(2px);
@@ -1109,7 +1084,6 @@ footer {
   border-width: 1px;
   gap: 16px;
   padding: 30px;
-  height: 551px;
   z-index: 1;
 }
 .form__title {
@@ -1369,8 +1343,20 @@ input[type="radio"]:checked ~ .radio-custom {
   margin: auto;
   margin-bottom: 28px;
 }
-.form__message--container {
+.form__container {
   display: none;
+  flex-direction: column;
+  background-color: white;
+  box-sizing: border-box;
+  border: 1px solid var(--cinza--claro);
+  width: 400px;
+  border-radius: 20px;
+  border-width: 1px;
+  gap: 16px;
+  padding: 30px;
+  height: 551px;
+  z-index: 1;
+  animation: 1s lowFade--in forwards;
 }
 [showSendMessage] {
   display: flex;
@@ -1391,4 +1377,31 @@ input[type="radio"]:checked ~ .radio-custom {
 }
 [showFormulario] {
   display: none;
+}
+[closed] {
+  display: none;
+}
+.popup__lowFade--in {
+  display: flex;
+  animation: 1s lowFade--in forwards;
+}
+@keyframes lowFade--in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.popup__lowFade--out {
+  display: flex;
+  animation: 1s lowFade--out forwards;
+}
+@keyframes lowFade--out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
