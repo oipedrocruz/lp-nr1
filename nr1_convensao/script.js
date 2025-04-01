@@ -68,30 +68,6 @@ faq__card.forEach(obj => {
   })
 })
 
-/* Popup */
-const popup = document.getElementById('popup')
-let callPopup = true
-
-document.addEventListener('mouseleave', () => {
-  if(!callPopup) return 
-  const closed = document.querySelector('[closed]')
-  if (closed) {
-    closed.classList.remove('popup__lowFade--out')
-    closed.classList.add('popup__lowFade--in')
-    popup.removeAttribute('closed')
-  }
-  callPopup = false
-})
-
-const closed = document.getElementById('popup')
-
-const showPopup = () => {
-  console.log('Fechar popup');
-  closed.classList.remove('popup__lowFade--in')
-  closed.classList.add('popup__lowFade--out')
-  setTimeout(() => popup.setAttribute('closed', ''), 1000);
-}
-
 /* Formulário */
 
 // Função para obter parâmetros UTM da URL
@@ -168,8 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const nome = document.getElementById('nome').value;
       const email = document.getElementById('email').value;
-      // const cargo = document.getElementById('cargo').value;
-      // const telefone = document.getElementById('telefone').value;
       const empresa = document.getElementById('empresa').value;
       const colaboradores = document.getElementById('colaboradores').value;
       const option_cliente = document.querySelector('input[name="option_cliente"]:checked')
@@ -178,13 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
       // Formatar a data e hora no padrão brasileiro
       let dataHoraFormatada = new Date().toLocaleString("pt-BR");
-   /*    if (
-          !telefone ||
-          telefone.length < 10
-      ) {
-          alert("Por favor, verifique o número de telefone!");
-          return;
-      } */
       if (
           !nome ||
           !email ||
@@ -198,10 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
           alert("Por favor, preencha todos os campos obrigatórios.");
           return;
       }
-    /*   if (/0{11}|1{11}|2{11}|3{11}|4{11}|5{11}|6{11}|7{11}|8{11}|9{11}/.test(telefone.replace(/\D/g, '').substring(0, 11))) {
-          alert('O número de telefone está inválido!')
-          return
-      } */
       if (!(/^\S+@\S+\.\S+$/.test(email))) {
           alert('O e-mail está inválido!')
           return
@@ -211,8 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
           str_lp_name: 'Manual do PAT - 2025',
           str_user_name: nome,
           str_email: email,
-          // str_cargo: cargo,
-          // nr_phone: telefone.replace(/\D/g, ''),
           str_company_name: empresa,
           str_employees_number: colaboradores,
           fl_Client: option_cliente.value,
@@ -233,6 +194,10 @@ document.addEventListener("DOMContentLoaded", function () {
           .then((resposta) => {
               const json = JSON.parse(resposta.replace("System.Collections.ArrayList", ""))
               if (json.statusCode === 200) {
+
+                  document.getElementById('showFormulario').setAttribute('showFormulario', showFormulario)
+                  document.getElementById('showSendMessage').setAttribute('showSendMessage', showSendMessage)
+
                   if (typeof dataLayer !== 'undefined') {
                       dataLayer.push({
                           event: "e_003_001_001_059_018_001",
@@ -293,30 +258,6 @@ document.getElementById('nome').addEventListener('input', (event) => {
 
 });
 
-// Função para validar e formatar o campo de TELEFONE
-/* function formatarTelefone(input) {
-  let telefone = input.value;
-  // Remover todos os caracteres não numéricos
-  telefone = telefone.replace(/\D/g, '');
-  // Limitar para no máximo 11 dígitos (DDD + número)
-  telefone = telefone.substring(0, 11);
-  // Não permitir números sequencias
-  if (/0{11}|1{11}|2{11}|3{11}|4{11}|5{11}|6{11}|7{11}|8{11}|9{11}/.test(telefone)) {
-      alert('O número de telefone está inválido!')
-      return
-  }
-  let formattedTelefone;
-  if (telefone.length >= 11) {
-      formattedTelefone = telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
-  } else {
-      formattedTelefone = telefone.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3");//não permitir o caracteres especiais
-  }
-  // Atualizar o valor do campo de telefone
-  input.value = formattedTelefone;
-}; */
-
-
-
 function validacaoEmail(email) {
 
   usuario = email.value.substring(0, email.value.indexOf("@"));
@@ -333,11 +274,8 @@ const message = {
   ['nome']: "* Nome é obrigatório",
   ['email']: "* Nome é obrigatório",
   ['valTrabalho']: "* Seu cargo é obrigatório",
-  // ['cargo']: "* Nome é obrigatório",
-  // ['telefone']: "* Nome é obrigatório",
   ['empresa']: "* Nome é obrigatório",
   ['colaboradores']: "* Nome é obrigatório",
-  // ['valDesafio']: "* Seu cargo é obrigatório",
 }
 
 const validadorInputs = (input, container, errorElement) => {
@@ -348,12 +286,7 @@ const validadorInputs = (input, container, errorElement) => {
     errorElement.textContent = "* Nome é obrigatório"
     errorElement.style.display = "block"
     isValid = true
-  } /* else if (input.id === "telefone" && validateTelefone(input.value)) { // input
-    container.classList.add('form__error-err')
-    errorElement.textContent = "* Nome é obrigatório"
-    errorElement.style.display = "block"
-    isValid = true
-  } */ else if (input.value == '') { // Seletor
+  } else if (input.value == '') { // Seletor
     container.classList.add('form__error-err')
     errorElement.textContent = message[input.id]
     errorElement.style.display = "block"
@@ -362,7 +295,6 @@ const validadorInputs = (input, container, errorElement) => {
   return isValid
 }
 
-// const validateTelefone = (telefone) => !(telefone.replace(/\D/g, '').length == 11)
 const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
 const inputs = document.querySelectorAll(".form__input, .form__select")
@@ -394,13 +326,67 @@ document.getElementById("colaboradores").addEventListener("input", (e) => {
   e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '') // Remove tudo que não for número
 })
 
-/* document.getElementById("telefone").addEventListener("input", (e) => {
-  let val = e.currentTarget.value.replace(/\D/g, '') 
-  if (val.length > 11) val = val.slice(0, 11) // Limita a 11 dígitos
-  let formatado = ''
-  if (val.length > 0) formatado += `(${val.slice(0, 2)}` // Adiciona o DDD
-  if (val.length >= 3) formatado += `) ${val.slice(2, 7)}` // Adiciona a primeira parte
-  if (val.length >= 8) formatado += `-${val.slice(7, 11)}` // Adiciona a segunda parte
 
-  e.currentTarget.value = formatado
-}) */
+/* Popup */
+const popup = document.getElementById('popup')
+let callPopup = true
+
+document.addEventListener('mouseleave', () => {
+  if(!callPopup) return 
+  const closed = document.querySelector('[closed]')
+  if (closed) {
+    closed.classList.remove('popup__lowFade--out')
+    closed.classList.add('popup__lowFade--in')
+    popup.removeAttribute('closed')
+  }
+  callPopup = false
+})
+
+const closed = document.getElementById('popup')
+
+const showPopup = () => {
+  console.log('Fechar popup');
+  closed.classList.remove('popup__lowFade--in')
+  closed.classList.add('popup__lowFade--out')
+  setTimeout(() => popup.setAttribute('closed', ''), 1000);
+}
+
+/* Popup formulário */
+let handleForms = true
+const formContent = document.getElementById('formContent')
+const openFormulario = () => {
+
+  if(handleForms) {
+    formContent.classList.remove('popup__lowFade--out')
+    formContent.classList.add('popup__lowFade--in')
+    formContent.removeAttribute('showFormulario')
+  } else {
+    formContent.classList.remove('popup__lowFade--in')
+    formContent.classList.add('popup__lowFade--out')
+    setTimeout(() => formContent.setAttribute('showFormulario', ''), 1000);
+  }
+
+  handleForms = !handleForms
+}
+
+// Scroll Personalizado: O GSAP é utilizado para animar o scroll suave
+gsap.registerPlugin(ScrollToPlugin);
+
+let scrollY = 0;
+const scrollSpeed = 70;  // A velocidade da rolagem personalizada
+
+// Função para scroll suave
+function customScroll() {
+  window.addEventListener("wheel", function(event) {
+    event.preventDefault();
+    if (event.deltaY > 0) scrollY += scrollSpeed;
+    else scrollY -= scrollSpeed;
+    scrollY = Math.max(0, Math.min(scrollY, document.body.scrollHeight - window.innerHeight));
+    gsap.to(window, {
+      scrollTo: { y: scrollY, autoKill: false }, 
+      ease: "power2.out"
+    });
+  }, { passive: false });
+}
+
+customScroll();  // Inicializa o scroll suave

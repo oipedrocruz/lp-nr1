@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caju - Além do básico em benefícios</title>
-<link rel="stylesheet" href="style.css">
-<style>
-  
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caju - Além do básico em benefícios</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <!-- Banner -->
@@ -53,7 +49,7 @@
     </div>
   </section>
 
-  <!-- empresa -->
+  <!-- Empresa -->
   <section class="empresa max__width">
     
     <div class="empresa__col--1">
@@ -87,7 +83,7 @@
     </div>
   </section>
   
-  <!-- marcador -->
+  <!-- Marcador -->
   <section class="marcador" color="laranja">
     <p class="marcador__title">Passo</p>
     <div class="marcador__numbers">
@@ -99,7 +95,7 @@
     </div>
   </section>
 
-  <!-- ideias -->
+  <!-- Ideias -->
   <section class="ideias max__width">
     <p class="ideias__title">Escolha as soluções ideais para sua empresa</p>
     <p class="ideias__p">Vá além do básico e ofereça benefícios que realmente fazem a diferença! Com a Caju, você investe no bem-estar dos colaboradores e ganha em engajamento, retenção e economia.</p>
@@ -110,7 +106,7 @@
     <p class="ideias__description">*planos para novos usuários</p>
   </section>
 
-  <!-- cards -->
+  <!-- Cards -->
   <section class="cards max__width">
     <div class="cards__card">
       <div class="cards__container">
@@ -190,12 +186,6 @@
 
       <button class="button__red" onclick="openFormulario()">Fale com especialista</button>
     </div>
-
-
-
-
-
-
     
   </section>
 
@@ -342,13 +332,13 @@
   </div>
 
   <!-- Forms -->
-  <div class="forms__popup" id="formContent" showFormulario>
+  <div class="forms__popup">
 
     <button class="forms__close" onclick="openFormulario()">
       <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/2d72e1db-91b1-4437-ac4b-5e9114ec507a.png" width="48" height="48" alt="">
     </button>
 
-    <div class="form">
+    <div class="form" id="showFormulario">
       <p class="form__title">Escolha a solução ideal!</p>
       <div class="form__ctn">
   
@@ -416,11 +406,11 @@
       </div>
     </div>
 
-    <div class="form" sendEmail>
+    <div class="form form__message--container popup__lowFade--in" id="showSendMessage">
       <div class="form__send">
-        <img src="" alt="" class="form__castanha">
+        <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/4385a414-e7e0-4d6c-b519-088707e4cb60.png" width="44" height="60" alt="" class="form__castanha">
         <p class="form__message">Informações recebidas!</p>
-        <p>Em breve, nosso time entrará em contato.</p>
+        <p class="form__breve">Em breve, nosso time entrará em contato.</p>
       </div>
     </div>
 
@@ -428,24 +418,9 @@
 
 </body>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/ScrollToPlugin.min.js"></script>
 <script src="script.js"></script>
-<script>
 
-let handleForms = true
-const formContent = document.getElementById('formContent')
-const openFormulario = () => {
-
-  if(handleForms) {
-    formContent.classList.remove('popup__lowFade--out')
-    formContent.classList.add('popup__lowFade--in')
-    formContent.removeAttribute('showFormulario')
-  } else {
-    formContent.classList.remove('popup__lowFade--in')
-    formContent.classList.add('popup__lowFade--out')
-    setTimeout(() => formContent.setAttribute('showFormulario', ''), 1000);
-  }
-
-  handleForms = !handleForms
-}
-</script>
 </html>

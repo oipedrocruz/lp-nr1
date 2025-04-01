@@ -1109,6 +1109,7 @@ footer {
   border-width: 1px;
   gap: 16px;
   padding: 30px;
+  height: 551px;
   z-index: 1;
 }
 .form__title {
@@ -1349,17 +1350,34 @@ input[type="radio"]:checked ~ .radio-custom {
   letter-spacing: 0%;
   text-align: center;
   color: var(--red);
+  margin-bottom: 20px;
 }
 .form__send {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.form__send p {
+.form__breve {
+  font-size: 16px;
   text-align: center;
+  font-weight: 400;
+  margin-top: 20px;
+  width: 190px;
+  margin: auto;
 }
-[sendEmail] {
-  display: none !important;
+.form__send img {
+  margin: auto;
+  margin-bottom: 28px;
+}
+.form__message--container {
+  display: none;
+}
+[showSendMessage] {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  margin: auto;
+  z-index: 3;
 }
 @media screen and(max-width: 1000px) {
   form {
