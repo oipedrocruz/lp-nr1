@@ -733,8 +733,10 @@ h1 span {
 footer {
   border-radius: 32px;
   background: var(--orange);
-  margin-bottom: 50px !important;
   padding: 48px 100px;
+}
+.footer__margin {
+  height: 24px !important;
 }
 .footer__logo {
   object-fit: contain;
