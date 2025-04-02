@@ -422,3 +422,9 @@ function customScroll() {
 }
 
 customScroll();  // Inicializa o scroll suave
+
+function abrirLink() {
+  console.log('aqui');
+  
+  window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
+}
