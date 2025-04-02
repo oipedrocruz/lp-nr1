@@ -1403,6 +1403,10 @@ input[type="radio"]:checked ~ .radio-custom {
   .forms__popup {
     gap: 20px;
   }
+  .popup__close {
+    right: 10px;
+    top: 10px;
+  }
 }
 @media screen and(max-width: 400px) {
   .form__input {
