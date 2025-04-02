@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const nome = document.getElementById('nome').value;
       const email = document.getElementById('email').value;
+      const cargo = document.getElementById('cargo').value;
       const empresa = document.getElementById('empresa').value;
       const colaboradores = document.getElementById('colaboradores').value;
       const option_cliente = document.querySelector('input[name="option_cliente"]:checked')
@@ -155,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (
           !nome ||
           !email ||
-          // !cargo ||
+          !cargo ||
           !empresa ||
           !option_cliente ||
           !colaboradores
@@ -174,6 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
           str_lp_name: 'Manual do PAT - 2025',
           str_user_name: nome,
           str_email: email,
+          str_cargo: cargo,
           str_company_name: empresa,
           str_employees_number: colaboradores,
           fl_Client: option_cliente.value,
@@ -273,10 +275,10 @@ function validacaoEmail(email) {
 /* Scripts do formulário */
 const message = {
   ['nome']: "* Nome é obrigatório",
-  ['email']: "* Nome é obrigatório",
-  ['valTrabalho']: "* Seu cargo é obrigatório",
-  ['empresa']: "* Nome é obrigatório",
-  ['colaboradores']: "* Nome é obrigatório",
+  ['email']: "* Email é obrigatório",
+  ['cargo']: "* Seu cargo é obrigatório",
+  ['empresa']: "* Número de funcionários é obrigatório",
+  ['colaboradores']: "* Quantidade de funcionários é obrigatório",
 }
 
 const validadorInputs = (input, container, errorElement) => {
@@ -376,6 +378,27 @@ const openFormulario = () => {
   }
 
   handleForms = !handleForms
+}
+
+let handleForms2 = true
+const formContent2 = document.getElementById('formContent2')
+
+const openFormulario2 = () => {
+  console.log('formContent2', formContent2);
+  if(handleForms2) {
+    formContent2.classList.remove('popup__lowFade--out')
+    formContent2.classList.add('popup__lowFade--in')
+    formContent2.removeAttribute('showFormulario')
+  } else {
+    formContent2.classList.remove('popup__lowFade--in')
+    formContent2.classList.add('popup__lowFade--out')
+    setTimeout(() => {
+      formContent2.classList.remove('popup__lowFade--out')
+      formContent2.setAttribute('showFormulario', '')
+    }, 1000);
+  }
+
+  handleForms2 = !handleForms2
 }
 
 

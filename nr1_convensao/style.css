@@ -203,10 +203,14 @@ body {
   z-index: 2;
   border-radius: 24px;
 }
+.banner__header a {
+  height: 32px;
+}
 .banner__logo {
   object-fit: contain;
   object-position: left;
   height: 32px;
+  width: max-content;
 }
 .banner__grid {
   display: grid;
@@ -253,6 +257,7 @@ h1 span {
 .banner__col--2 {
   position: relative;
   width: 100%;
+  height: max-content;
 }
 .banner__fita {
   position: absolute;
@@ -263,7 +268,7 @@ h1 span {
 .banner__fita--2 {
   position: absolute;
   left: -40px;
-  bottom: 10px;
+  bottom: -38px;
   transform: rotate(180deg);
   z-index: 1;
 }
@@ -1059,6 +1064,7 @@ footer {
 /* Formulário ↓ */
 .forms__popup {
   display: none;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(2px);
@@ -1069,6 +1075,7 @@ footer {
   height: 100vh;
   background: rgba(0, 0, 0, .6);
   z-index: 6;
+  padding: 0 10px;
 }
 .forms__close {
   position: absolute;
@@ -1081,7 +1088,8 @@ footer {
   background-color: white;
   box-sizing: border-box;
   border: 1px solid var(--cinza--claro);
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   border-radius: 20px;
   border-width: 1px;
   gap: 16px;
@@ -1201,7 +1209,7 @@ input[type=number] {
   outline: 1px solid black;
   transition: .5s;
 }
-.form__submit {
+.form__submit,  .form__submit--whats {
   background-color: var(--red);
   border-radius: 12px;
   border: 0;
@@ -1214,10 +1222,19 @@ input[type=number] {
   text-align: center;
   width: 100%;
   transition: .2s;
+  white-space: nowrap;
 }
 .form__submit:active {
   transition: .2s;
   background-color: #74031C;
+}
+ .form__submit--whats {
+  background-color: #59D359;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
 }
 .form__disclamer {
   font-size: 10px;
@@ -1259,11 +1276,12 @@ input[type=number] {
   margin-top: 8px;
   z-index: 2;
 } 
-.form__error-err .form__input, .form__error-err .form__select {
+.form__error-err .form__input, .form__error-err .form__select .form__cut {
   outline: 1px solid var(--roxo);
+  color: var(--roxo);
 }
 .form__error-err .form__placeholder {
-  color: var(--roxo);
+  color: var(--roxo) !important;
 }
 .form__input--telefone {
   display: flex;
@@ -1367,9 +1385,20 @@ input[type="radio"]:checked ~ .radio-custom {
   margin: auto;
   z-index: 3;
 }
-@media screen and(max-width: 1000px) {
+@media screen and (max-width: 1000px) {
   form {
     width: 100%;
+  }
+  .forms__close {
+    left: 0;
+    top: 0;
+  }
+  .forms__close {
+    position: relative; 
+    align-self: flex-start;
+  }
+  .forms__popup {
+    gap: 20px;
   }
 }
 @media screen and(max-width: 400px) {
