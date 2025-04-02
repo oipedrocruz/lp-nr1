@@ -1,74 +1,3 @@
- /* Cards */
- const data = [
-  { // 1
-    ['faq__element']: '1. O que é a NR-1 e por que ela é importante?',
-    ['faq__card--content']: `A Norma Regulamentadora nº 1 (NR-1) estabelece diretrizes gerais de segurança e saúde no trabalho, incluindo a obrigatoriedade de programas de bem-estar e gerenciamento de riscos ocupacionais. Estar em conformidade com a NR-1 é essencial para evitar penalidades e garantir um ambiente seguro para os colaboradores.`
-  },
-  { // 2
-    ['faq__element']: '2. Como a Caju pode ajudar minha empresa a se adequar à NR-1?',
-    ['faq__card--content']: `A Caju oferece soluções que integram saúde mental, bem-estar e qualidade de vida em uma única plataforma. Com o <strong>Caju Mais</strong>, sua empresa atende às exigências da NR-1 de forma prática, oferecendo suporte psicológico, equilíbrio entre vida profissional e pessoal e ações preventivas para um ambiente de trabalho mais seguro.`
-  },
-  { // 3
-    ['faq__element']: '3. Quais benefícios minha empresa tem ao se adequar à NR-1?',
-    ['faq__card--content']: `Além de garantir segurança jurídica e evitar multas, estar em conformidade com a NR-1 melhora a qualidade de vida dos colaboradores, reduz afastamentos por problemas de saúde e fortalece a marca empregadora, tornando sua empresa mais atrativa no mercado.`
-  },
-  { // 4
-    ['faq__element']: '4. Quais são os riscos de não seguir a NR-1?',
-    ['faq__card--content']: `Empresas que não se adequarem à NR-1 podem enfrentar <strong>multas, ações trabalhistas, aumento de acidentes de trabalho</strong> e impactos negativos na reputação. Além disso, a falta de ações preventivas pode gerar custos elevados com afastamentos e baixa produtividade.`
-  },
-  { // 5
-    ['faq__element']: '5. Os benefícios flexíveis ajudam na adequação à NR-1?',
-    ['faq__card--content']: `Sim! Com benefícios flexíveis, os colaboradores têm mais autonomia para cuidar da própria saúde e bem-estar. A Caju permite integrar soluções que promovem qualidade de vida, como <strong>apoio psicológico, incentivo à prática de atividades físicas e ações de saúde ocupacional</strong>, tudo dentro das diretrizes da NR-1.`
-  },
-  { // 6
-    ['faq__element']: '6. Como a Caju garante segurança jurídica na gestão de benefícios?',
-    ['faq__card--content']: `Nossa plataforma é 100% auditável e transparente, garantindo que os benefícios oferecidos estejam sempre em conformidade com as leis trabalhistas e regulamentações da NR-1. Além disso, o Caju Mais simplifica a gestão de bem-estar corporativo, reduzindo riscos trabalhistas e fiscais.`
-  },
-  { // 7
-    ['faq__element']: '7. Como posso começar a adequação da minha empresa à NR-1 com a Caju?',
-    ['faq__card--content']: `É simples! Entre em contato com nossos especialistas e descubra como a Caju pode ajudar sua empresa a se adequar à NR-1, garantindo mais segurança, eficiência e bem-estar para seus colaboradores.`
-  },
- 
-]
-
-const column1 = document.querySelector('.column--2')
-const column2 = document.querySelector('.column--1')
-let handle = 1
-
-data.forEach(obj => {
-  const div = document.createElement('div')
-  div.classList.add('faq__card')
-  div.innerHTML = `
-    <div class="faq__button">
-      <p class="faq__element">${obj['faq__element']}</p>
-      <button class="faq__arrow">
-        <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/fd229096-ad7d-40bc-b202-286610fdd803.png" alt="">
-        </button>
-    </div>
-    <div class="faq__card--content">${obj['faq__card--content']}</div>
-  `
-
-  handle = handle+1
-  handle % 2 == 0 ? column2.appendChild(div) : column1.appendChild(div)
-})
-
-const faq__card = document.querySelectorAll('.faq__card')
-faq__card.forEach(obj => {
-  obj.addEventListener('click', (e) => {
-    
-    
-    const card = e.currentTarget
-    if(Array.from(card.classList).some(obj => obj == 'open')) {
-      card.classList.remove('open')
-    } else {
-      const openClass = document.querySelector('.open')
-      if(openClass != null) openClass.classList.remove('open')
-      card.classList.add('open')
-    }
-  })
-})
-
-/* Formulário */
 
 // Função para obter parâmetros UTM da URL
 function getUTMParameters() {
@@ -115,9 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
       return cookie["_ga"].substring(6);
   }
 
-  let botaoEnviar = document.getElementById("submitButton");
-  botaoEnviar.addEventListener("click", function (e) {
+  let botaoEnviar = document.querySelectorAll("#submitButton");
+  botaoEnviar.forEach(obj => {
+
+    obj.addEventListener("click", function (e) {
       e.preventDefault();
+      const isWhatsapp = obj.getAttribute('whatsapp') == "true"
 
       let isSomethingMissing = false
 
@@ -127,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         errorElement.textContent = ""
         const container = input.closest(".form__inputCtn")
         
-        isSomethingMissing = validadorInputs(input, container, errorElement)
+        isSomethingMissing = validadorInputs(input, container, errorElement, isWhatsapp)
         
         input.addEventListener('click', () => { // Remove o erro ao clicar novamente no input
           container.classList.remove('form__error-err')
@@ -135,22 +67,20 @@ document.addEventListener("DOMContentLoaded", function () {
         })
       })
 
-      const checkboxs = document.querySelector('input[name="option_cliente"]:checked')
-      
+      const checkboxs = isWhatsapp ? document.querySelector('input[name="option_cliente2"]:checked') : document.querySelector('input[name="option_cliente"]:checked')
+
       if (isSomethingMissing || checkboxs == null) {
         alert('Preencha todos os campos antes de processeguir')
         return // Caso esteja faltando algo, impede a função de seguir
       }
 
-      const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
-      const cargo = document.getElementById('cargo').value;
-      const empresa = document.getElementById('empresa').value;
-      const colaboradores = document.getElementById('colaboradores').value;
-      const option_cliente = document.querySelector('input[name="option_cliente"]:checked')
-  
+      const nome = isWhatsapp ? document.getElementById('nome2').value : document.getElementById('nome').value;
+      const email = isWhatsapp ? document.getElementById('email2').value : document.getElementById('email').value;
+      const cargo = isWhatsapp ? true : document.getElementById('cargo').value;
+      const empresa = isWhatsapp ? document.getElementById('empresa2').value : document.getElementById('empresa').value;
+      const colaboradores = isWhatsapp ? true : document.getElementById('colaboradores').value;
+      const option_cliente = isWhatsapp ? document.querySelector('input[name="option_cliente2"]:checked') : document.querySelector('input[name="option_cliente"]:checked')
 
-    
       // Formatar a data e hora no padrão brasileiro
       let dataHoraFormatada = new Date().toLocaleString("pt-BR");
       if (
@@ -160,8 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
           !empresa ||
           !option_cliente ||
           !colaboradores
-          
-
           ) {
           alert("Por favor, preencha todos os campos obrigatórios.");
           return;
@@ -200,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   // Mostra mensagem de email enviado...
                   document.getElementById('showFormulario').setAttribute('showFormulario', showFormulario)
                   document.getElementById('showSendMessage').setAttribute('showSendMessage', showSendMessage)
-
+                  if(obj.getAttribute('whatsapp') == true) window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
                   if (typeof dataLayer !== 'undefined') {
                       dataLayer.push({
                           event: "e_003_001_001_059_018_001",
@@ -215,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
               }
           }).catch(err => console.log(err));
   });
+}) 
 });
 
 //split email domain
@@ -280,7 +209,11 @@ const message = {
   ['colaboradores']: "* Quantidade de funcionários é obrigatório",
 }
 
-const validadorInputs = (input, container, errorElement) => {
+const validadorInputs = (input, container, errorElement, isWhatsapp) => {
+  
+  const validadeWhatsapp = input.getAttribute('isWhatsapp') == 'input'
+  if(!validadeWhatsapp && isWhatsapp || validadeWhatsapp && isWhatsapp == false) return
+  
   let isValid = false
   
   if (input.id === "email" && !validateEmail(input.value)) { // input
@@ -327,104 +260,3 @@ document.getElementById("nome").addEventListener("input", (e) => {
 document.getElementById("colaboradores").addEventListener("input", (e) => {
   e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '') // Remove tudo que não for número
 })
-
-
-// Popup - Mostra quando o mouse sai da página
-const popup = document.getElementById('popup')
-let callPopup = true
-
-document.addEventListener('mouseleave', () => {
-  if(!callPopup) return 
-  const closed = document.querySelector('[closed]')
-  if (closed) {
-    closed.classList.remove('popup__lowFade--out')
-    closed.classList.add('popup__lowFade--in')
-    popup.removeAttribute('closed')
-  }
-  callPopup = false
-})
-
-const closed = document.getElementById('popup')
-
-const showPopup = () => {
-  console.log('Fechar popup');
-  closed.classList.remove('popup__lowFade--in')
-  closed.classList.add('popup__lowFade--out')
-  setTimeout(() => {
-    closed.classList.remove('popup__lowFade--out')
-    popup.setAttribute('closed', '')
-  }, 1000);
-}
-
-
-// Popup formulário
-let handleForms = true
-const formContent = document.getElementById('formContent')
-
-const openFormulario = () => {
-  console.log(formContent);
-  if(handleForms) {
-    formContent.classList.remove('popup__lowFade--out')
-    formContent.classList.add('popup__lowFade--in')
-    formContent.removeAttribute('showFormulario')
-  } else {
-    formContent.classList.remove('popup__lowFade--in')
-    formContent.classList.add('popup__lowFade--out')
-    setTimeout(() => {
-      formContent.classList.remove('popup__lowFade--out')
-      formContent.setAttribute('showFormulario', '')
-    }, 1000);
-  }
-
-  handleForms = !handleForms
-}
-
-let handleForms2 = true
-const formContent2 = document.getElementById('formContent2')
-
-const openFormulario2 = () => {
-  console.log('formContent2', formContent2);
-  if(handleForms2) {
-    formContent2.classList.remove('popup__lowFade--out')
-    formContent2.classList.add('popup__lowFade--in')
-    formContent2.removeAttribute('showFormulario')
-  } else {
-    formContent2.classList.remove('popup__lowFade--in')
-    formContent2.classList.add('popup__lowFade--out')
-    setTimeout(() => {
-      formContent2.classList.remove('popup__lowFade--out')
-      formContent2.setAttribute('showFormulario', '')
-    }, 1000);
-  }
-
-  handleForms2 = !handleForms2
-}
-
-
-// Scroll personalizado: O GSAP é utilizado para animar o scroll suave
-gsap.registerPlugin(ScrollToPlugin);
-
-let scrollY = 0;
-const scrollSpeed = 70;  // A velocidade da rolagem personalizada
-
-// Função para scroll suave
-function customScroll() {
-  window.addEventListener("wheel", function(event) {
-    event.preventDefault();
-    if (event.deltaY > 0) scrollY += scrollSpeed;
-    else scrollY -= scrollSpeed;
-    scrollY = Math.max(0, Math.min(scrollY, document.body.scrollHeight - window.innerHeight));
-    gsap.to(window, {
-      scrollTo: { y: scrollY, autoKill: false }, 
-      ease: "power2.out"
-    });
-  }, { passive: false });
-}
-
-customScroll();  // Inicializa o scroll suave
-
-function abrirLink() {
-  console.log('aqui');
-  
-  window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
-}

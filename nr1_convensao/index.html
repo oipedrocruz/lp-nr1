@@ -449,27 +449,27 @@
       <div class="form__ctn">
   
           <div class="form__inputCtn input--1">
-            <input type="text" id="nome" name="nome" class="form__input" placeholder="" required />
+            <input type="text" id="nome2" name="nome2" class="form__input" placeholder="" required isWhatsapp="input" />
             <div class="form__cut"></div>
-            <label for="nome" class="form__placeholder">Digite aqui seu nome</label>
+            <label for="nome2" class="form__placeholder">Digite aqui seu nome</label>
           </div>
   
           <div class="form__inputCtn form__input--4">
-            <input type="text" id="empresa" name="empresa" class="form__input"placeholder="" required maxlength="100" />
+            <input type="text" id="empresa2" name="empresa2" class="form__input" placeholder="" required isWhatsapp="input" maxlength="100" />
             <div class="form__cut form__cut-short"></div>
-            <label for="empresa" class="form__placeholder">Digite aqui a sua empresa</label>
+            <label for="empresa2" class="form__placeholder">Digite aqui a sua empresa</label>
           </div>
   
           <div class="form__inputCtn input--2">
-            <input type="email" id="email" name="email" class="form__input" placeholder="" required onblur="validacaoEmail(this)"/>
+            <input type="email" id="email2" name="email2" class="form__input" placeholder="" required isWhatsapp="input" onblur="validacaoEmail(this)"/>
             <div class="form__cut"></div>
-            <label for="email" class="form__placeholder">Digite aqui seu e-mail corporativo</label>
+            <label for="email2" class="form__placeholder">Digite aqui seu e-mail corporativo</label>
           </div>
 
           <div class="form__inputCtn form__input--5">
-            <input type="text" id="colaboradores" name="colaboradores" required minlength="1" maxlength="5" class="form__input" oninput="onlyNumber(this)" placeholder="" />
+            <input type="text" id="colaboradores2" name="colaboradores2" minlength="1" maxlength="5" class="form__input" oninput="onlyNumber(this)" placeholder="" required isWhatsapp="input" />
             <div class="form__cut form__cut-short"></div>
-            <label for="colaboradores" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
+            <label for="colaboradores2" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
           </div>
       </div>
   
@@ -478,12 +478,12 @@
         
         <div style="display: flex; gap: 9px;">
           <label class="radio-label">
-            <input type="radio" name="option_cliente" value="Sim">
+            <input type="radio" name="option_cliente2" value="Sim">
             <span class="radio-custom"></span>
             Sim
           </label>
           <label class="radio-label">
-            <input type="radio" name="option_cliente" value="Não">
+            <input type="radio" name="option_cliente2" value="Não">
             <span class="radio-custom"></span>
             Não
           </label>
@@ -491,7 +491,7 @@
       </div>
   
       <div class="form__submit--ctn">
-        <button type="submit" value="Fale com o vendedor" onclick="abrirLink()" id="submitButton" class="form__submit--whats">
+        <button type="submit" value="Fale com o vendedor" id="submitButton" whatsapp="true" class="form__submit--whats">
           <p>Fale com o vendedor</p>
         </button>
         <p class="form__disclamer">Ao continuar, esteja ciente da política de privacidade da Caju.</p>
@@ -513,6 +513,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/ScrollToPlugin.min.js"></script>
-<script src="script.js"></script>
+
+<script src="scripts/form.js"></script>
+<script src="scripts/scripts.js"></script>
 
 </html>
