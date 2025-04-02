@@ -1283,6 +1283,9 @@ input[type=number] {
 .form__error-err .form__placeholder {
   color: var(--roxo) !important;
 }
+.form__error-err .form__select {
+  outline: 1px solid var(--roxo);
+}
 .form__input--telefone {
   display: flex;
   position: relative;

@@ -275,9 +275,8 @@ function validacaoEmail(email) {
 /* Scripts do formulário */
 const message = {
   ['nome']: "* Nome é obrigatório",
-  ['email']: "* Email é obrigatório",
   ['cargo']: "* Seu cargo é obrigatório",
-  ['empresa']: "* Número de funcionários é obrigatório",
+  ['empresa']: "* Nome da empresa é obrigatório",
   ['colaboradores']: "* Quantidade de funcionários é obrigatório",
 }
 
@@ -286,7 +285,7 @@ const validadorInputs = (input, container, errorElement) => {
   
   if (input.id === "email" && !validateEmail(input.value)) { // input
     container.classList.add('form__error-err')
-    errorElement.textContent = "* Nome é obrigatório"
+    errorElement.textContent = "* Email corporativo é obrigatório"
     errorElement.style.display = "block"
     isValid = true
   } else if (input.value == '') { // Seletor
