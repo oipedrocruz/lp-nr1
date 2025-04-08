@@ -1,14 +1,14 @@
-  // Função para obter parâmetros UTM da URL
-  function getUTMParameters() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const utmParameters = {};
-    utmParameters["str_utm_source"] = urlParams.get("utm_source") || "";
-    utmParameters["str_utm_medium"] = urlParams.get("utm_medium") || "";
-    utmParameters["str_utm_campaign"] = urlParams.get("utm_campaign") || "";
-    utmParameters["str_utm_term"] = urlParams.get("utm_term") || "";
-    return utmParameters;
-}
 
+// Função para obter parâmetros UTM da URL
+function getUTMParameters() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmParameters = {};
+  utmParameters["str_utm_source"] = urlParams.get("utm_source") || "";
+  utmParameters["str_utm_medium"] = urlParams.get("utm_medium") || "";
+  utmParameters["str_utm_campaign"] = urlParams.get("utm_campaign") || "";
+  utmParameters["str_utm_term"] = urlParams.get("utm_term") || "";
+  return utmParameters;
+}
 
 document.querySelectorAll('.form__inputCtn').forEach(obj => {
   obj.querySelector('[inputStatus]').addEventListener('focus', (e) => {
@@ -54,9 +54,12 @@ document.addEventListener("DOMContentLoaded", function () {
       return cookie["_ga"].substring(6);
   }
 
-  let botaoEnviar = document.getElementById("submitButton");
-  botaoEnviar.addEventListener("click", function (e) {
+  let botaoEnviar = document.querySelectorAll("#submitButton");
+  botaoEnviar.forEach(obj => {
+
+    obj.addEventListener("click", function (e) {
       e.preventDefault();
+      const isWhatsapp = obj.getAttribute('whatsapp') == "true"
 
       let isSomethingMissing = false
 
@@ -66,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         errorElement.textContent = ""
         const container = input.closest(".form__inputCtn")
         
-        isSomethingMissing = validadorInputs(input, container, errorElement)
+        isSomethingMissing = validadorInputs(input, container, errorElement, isWhatsapp)
         
         input.addEventListener('click', () => { // Remove o erro ao clicar novamente no input
           container.classList.remove('form__error-err')
@@ -74,32 +77,22 @@ document.addEventListener("DOMContentLoaded", function () {
         })
       })
 
-      const checkboxs = document.querySelector('input[name="option_cliente"]:checked')
-      
+      const checkboxs = isWhatsapp ? document.querySelector('input[name="option_cliente2"]:checked') : document.querySelector('input[name="option_cliente"]:checked')
+
       if (isSomethingMissing || checkboxs == null) {
         alert('Preencha todos os campos antes de processeguir')
         return // Caso esteja faltando algo, impede a função de seguir
       }
 
-      const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
-      const cargo = document.getElementById('cargo').value;
-      const telefone = document.getElementById('telefone').value;
-      const empresa = document.getElementById('empresa').value;
-      const colaboradores = document.getElementById('colaboradores').value;
-      const option_cliente = document.querySelector('input[name="option_cliente"]:checked')
-  
+      const nome = isWhatsapp ? document.getElementById('nome2').value : document.getElementById('nome').value;
+      const email = isWhatsapp ? document.getElementById('email2').value : document.getElementById('email').value;
+      const cargo = isWhatsapp ? true : document.getElementById('cargo').value;
+      const empresa = isWhatsapp ? document.getElementById('empresa2').value : document.getElementById('empresa').value;
+      const colaboradores = isWhatsapp ? true : document.getElementById('colaboradores').value;
+      const option_cliente = isWhatsapp ? document.querySelector('input[name="option_cliente2"]:checked') : document.querySelector('input[name="option_cliente"]:checked')
 
-    
       // Formatar a data e hora no padrão brasileiro
       let dataHoraFormatada = new Date().toLocaleString("pt-BR");
-      if (
-          !telefone ||
-          telefone.length < 10
-      ) {
-          alert("Por favor, verifique o número de telefone!");
-          return;
-      }
       if (
           !nome ||
           !email ||
@@ -107,15 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
           !empresa ||
           !option_cliente ||
           !colaboradores
-          
-
           ) {
           alert("Por favor, preencha todos os campos obrigatórios.");
           return;
-      }
-      if (/0{11}|1{11}|2{11}|3{11}|4{11}|5{11}|6{11}|7{11}|8{11}|9{11}/.test(telefone.replace(/\D/g, '').substring(0, 11))) {
-          alert('O número de telefone está inválido!')
-          return
       }
       if (!(/^\S+@\S+\.\S+$/.test(email))) {
           alert('O e-mail está inválido!')
@@ -127,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
           str_user_name: nome,
           str_email: email,
           str_cargo: cargo,
-          nr_phone: telefone.replace(/\D/g, ''),
           str_company_name: empresa,
           str_employees_number: colaboradores,
           fl_Client: option_cliente.value,
@@ -148,6 +134,11 @@ document.addEventListener("DOMContentLoaded", function () {
           .then((resposta) => {
               const json = JSON.parse(resposta.replace("System.Collections.ArrayList", ""))
               if (json.statusCode === 200) {
+
+                  // Mostra mensagem de email enviado...
+                  document.getElementById('showFormulario').setAttribute('showFormulario', showFormulario)
+                  document.getElementById('showSendMessage').setAttribute('showSendMessage', showSendMessage)
+                  if(obj.getAttribute('whatsapp') == true) window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
                   if (typeof dataLayer !== 'undefined') {
                       dataLayer.push({
                           event: "e_003_001_001_059_018_001",
@@ -162,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
               }
           }).catch(err => console.log(err));
   });
+}) 
 });
 
 //split email domain
@@ -199,7 +191,6 @@ function onlyNumber(input) {
       input.value = ''
       return
   }
-
 }
 
 document.getElementById('nome').addEventListener('input', (event) => {
@@ -208,30 +199,6 @@ document.getElementById('nome').addEventListener('input', (event) => {
   event.target.value = event.target.value.replace(regex, '').replace(/[!@#$%^&\(\)\_\=\+\-\¨\<\,\>\.\:\;\~\}\]\[\´\{\**]/g, "");
 
 });
-
-// Função para validar e formatar o campo de TELEFONE
-function formatarTelefone(input) {
-  let telefone = input.value;
-  // Remover todos os caracteres não numéricos
-  telefone = telefone.replace(/\D/g, '');
-  // Limitar para no máximo 11 dígitos (DDD + número)
-  telefone = telefone.substring(0, 11);
-  // Não permitir números sequencias
-  if (/0{11}|1{11}|2{11}|3{11}|4{11}|5{11}|6{11}|7{11}|8{11}|9{11}/.test(telefone)) {
-      alert('O número de telefone está inválido!')
-      return
-  }
-  let formattedTelefone;
-  if (telefone.length >= 11) {
-      formattedTelefone = telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
-  } else {
-      formattedTelefone = telefone.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3");//não permitir o caracteres especiais
-  }
-  // Atualizar o valor do campo de telefone
-  input.value = formattedTelefone;
-};
-
-
 
 function validacaoEmail(email) {
 
@@ -244,37 +211,24 @@ function validacaoEmail(email) {
   }
 }
 
-
-
-
-
-
-
-
 /* Scripts do formulário */
-
 const message = {
   ['nome']: "* Nome é obrigatório",
-  ['email']: "* Nome é obrigatório",
-  ['valTrabalho']: "* Seu cargo é obrigatório",
-  ['cargo']: "* Nome é obrigatório",
-  ['telefone']: "* Nome é obrigatório",
-  ['empresa']: "* Nome é obrigatório",
-  ['colaboradores']: "* Nome é obrigatório",
-  ['valDesafio']: "* Seu cargo é obrigatório",
+  ['cargo']: "* Seu cargo é obrigatório",
+  ['empresa']: "* Nome da empresa é obrigatório",
+  ['colaboradores']: "* Quantidade de funcionários é obrigatório",
 }
 
-const validadorInputs = (input, container, errorElement) => {
+const validadorInputs = (input, container, errorElement, isWhatsapp) => {
+  
+  const validadeWhatsapp = input.getAttribute('isWhatsapp') == 'input'
+  if(!validadeWhatsapp && isWhatsapp || validadeWhatsapp && isWhatsapp == false) return
+  
   let isValid = false
   
   if (input.id === "email" && !validateEmail(input.value)) { // input
     container.classList.add('form__error-err')
-    errorElement.textContent = "* Nome é obrigatório"
-    errorElement.style.display = "block"
-    isValid = true
-  } else if (input.id === "telefone" && validateTelefone(input.value)) { // input
-    container.classList.add('form__error-err')
-    errorElement.textContent = "* Nome é obrigatório"
+    errorElement.textContent = "* Email corporativo é obrigatório"
     errorElement.style.display = "block"
     isValid = true
   } else if (input.value == '') { // Seletor
@@ -286,7 +240,6 @@ const validadorInputs = (input, container, errorElement) => {
   return isValid
 }
 
-const validateTelefone = (telefone) => !(telefone.replace(/\D/g, '').length == 11)
 const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
 const inputs = document.querySelectorAll(".form__input, .form__select")
@@ -316,15 +269,4 @@ document.getElementById("nome").addEventListener("input", (e) => {
 
 document.getElementById("colaboradores").addEventListener("input", (e) => {
   e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '') // Remove tudo que não for número
-})
-
-document.getElementById("telefone").addEventListener("input", (e) => {
-  let val = e.currentTarget.value.replace(/\D/g, '') 
-  if (val.length > 11) val = val.slice(0, 11) // Limita a 11 dígitos
-  let formatado = ''
-  if (val.length > 0) formatado += `(${val.slice(0, 2)}` // Adiciona o DDD
-  if (val.length >= 3) formatado += `) ${val.slice(2, 7)}` // Adiciona a primeira parte
-  if (val.length >= 8) formatado += `-${val.slice(7, 11)}` // Adiciona a segunda parte
-
-  e.currentTarget.value = formatado
 })

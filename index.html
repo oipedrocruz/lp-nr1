@@ -71,20 +71,21 @@
   <!-- Empresa -->
   <section class="empresa max__width">
     
-    <img class="empresa__img" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/ff9124c3-5b2d-40e9-b085-999e5024e697.png" width="164" height="80" alt="">
-
     <div class="empresa__col--1">
       
       <p class="empresa__title">Faça o diagnóstico da sua empresa</p>
-      <p class="empresa__p">Em parceria com a <strong>Conexa</strong>, referência em saúde e bem-estar, criamos uma solução prática e eficiente para mapear o cenário atual da sua empresa. Com esse diagnóstico, você dá o primeiro passo para um ambiente de trabalho mais seguro, saudável e em <strong>conformidade com a NR-1</strong>.</p>
+      <p class="empresa__p">Em parceria com a <strong>Zenklub</strong>, referência em saúde e bem-estar, criamos uma solução prática e eficiente para mapear o cenário atual da sua empresa. Com esse diagnóstico, você dá o primeiro passo para um ambiente de trabalho mais seguro, saudável e em <strong>conformidade com a NR-1</strong>.</p>
       <img height="50" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/13d1ec2f-db43-448a-a04f-58b98989349e.png
       " width="300" height="30" alt="">
     </div>
 
     <div class="empresa__col--2">
+      
+      <img class="empresa__img" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/ff9124c3-5b2d-40e9-b085-999e5024e697.png" width="164" height="80" alt="">
+
       <img class="empresa__fita" width="200" height="40" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/1e96e540-72a5-4c4b-8ea3-0b84c7b2d7f8.png" alt="">
 
-      <p class="empresa__nr">NR-1 Adequação</p>
+      <p class="empresa__nr">NR-1 Diagnóstico Inicial</p>
       <p class="empresa__a">A partir de</p>
       <div class="empresa__valor">
         <p class="empresa__preco">R$64,90</p>
@@ -367,31 +368,31 @@
       <div class="form__ctn">
   
           <div class="form__inputCtn input--1">
-            <input type="text" id="nome" name="nome" class="form__input" placeholder="" required />
+            <input type="text" id="nome" name="nome" class="form__input" placeholder="" required inputStatus />
             <div class="form__cut"></div>
             <label for="nome" class="form__placeholder">Digite aqui seu nome</label>
           </div>
   
           <div class="form__inputCtn form__input--4">
-            <input type="text" id="empresa" name="empresa" class="form__input"placeholder="" required maxlength="100" />
+            <input type="text" id="empresa" name="empresa" class="form__input"placeholder="" required inputStatus maxlength="100" />
             <div class="form__cut form__cut-short"></div>
             <label for="empresa" class="form__placeholder">Digite aqui a sua empresa</label>
           </div>
   
           <div class="form__inputCtn input--2">
-            <input type="email" id="email" name="email" class="form__input" placeholder="" required onblur="validacaoEmail(this)"/>
+            <input type="email" id="email" name="email" class="form__input" placeholder="" required inputStatus onblur="validacaoEmail(this)"/>
             <div class="form__cut"></div>
             <label for="email" class="form__placeholder">Digite aqui seu e-mail corporativo</label>
           </div>
           
           <div class="form__inputCtn form__input--5">
-            <input type="text" id="colaboradores" name="colaboradores" required minlength="1" maxlength="5" class="form__input"  oninput="onlyNumber(this)" placeholder="" />
+            <input type="text" id="colaboradores" name="colaboradores" required inputStatus minlength="1" maxlength="5" class="form__input"  oninput="onlyNumber(this)" placeholder="" />
             <div class="form__cut form__cut-short"></div>
             <label for="colaboradores" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
           </div>
   
           <div class="form__inputCtn form__select--1 form__select--arrow">
-            <select id="cargo" name="cargo" class="form__select" name="" required>
+            <select id="cargo" name="cargo" class="form__select" name="" required inputStatus>
               <option value="" selected disabled></option> <!-- Opção vazia -->
               <option value="socio">Sócio / Diretor</option>
               <option value="gerente">Gerente / Coordenador(a)</option>
@@ -408,15 +409,15 @@
       <div class="form__checkbox">
         <p class="form__check--title">Você já é cliente Caju?</p>
         
-        <div style="display: flex; gap: 9px;">
+        <div class="form__labels">
           <label class="radio-label">
             <input type="radio" name="option_cliente" value="Sim">
-            <span class="radio-custom"></span>
+            <span class="form__radio-custom"></span>
             Sim
           </label>
           <label class="radio-label">
             <input type="radio" name="option_cliente" value="Não">
-            <span class="radio-custom"></span>
+            <span class="form__radio-custom"></span>
             Não
           </label>
         </div>
@@ -426,7 +427,7 @@
   
       <div class="form__submit--ctn">
         <input type="submit" value="Falar com especialista" id="submitButton" class="form__submit" />
-        <p class="form__disclamer">Ao continuar, esteja ciente da política de privacidade da Caju.</p>
+        <p class="form__disclamer">Ao continuar, esteja ciente da <a href="#" target="_blank">política de privacidade</a> da Caju.</p>
       </div>
     </div>
 
@@ -452,25 +453,25 @@
       <div class="form__ctn">
   
           <div class="form__inputCtn input--1">
-            <input type="text" id="nome2" name="nome2" class="form__input" placeholder="" required isWhatsapp="input" />
+            <input type="text" id="nome2" name="nome2" class="form__input" placeholder="" required inputStatus isWhatsapp="input" />
             <div class="form__cut"></div>
             <label for="nome2" class="form__placeholder">Digite aqui seu nome</label>
           </div>
   
           <div class="form__inputCtn form__input--4">
-            <input type="text" id="empresa2" name="empresa2" class="form__input" placeholder="" required isWhatsapp="input" maxlength="100" />
+            <input type="text" id="empresa2" name="empresa2" class="form__input" placeholder="" required inputStatus isWhatsapp="input" maxlength="100" />
             <div class="form__cut form__cut-short"></div>
             <label for="empresa2" class="form__placeholder">Digite aqui a sua empresa</label>
           </div>
   
           <div class="form__inputCtn input--2">
-            <input type="email" id="email2" name="email2" class="form__input" placeholder="" required isWhatsapp="input" onblur="validacaoEmail(this)"/>
+            <input type="email" id="email2" name="email2" class="form__input" placeholder="" required inputStatus isWhatsapp="input" onblur="validacaoEmail(this)"/>
             <div class="form__cut"></div>
             <label for="email2" class="form__placeholder">Digite aqui seu e-mail corporativo</label>
           </div>
 
           <div class="form__inputCtn form__input--5">
-            <input type="text" id="colaboradores2" name="colaboradores2" minlength="1" maxlength="5" class="form__input" oninput="onlyNumber(this)" placeholder="" required isWhatsapp="input" />
+            <input type="text" id="colaboradores2" name="colaboradores2" minlength="1" maxlength="5" class="form__input" oninput="onlyNumber(this)" placeholder="" required inputStatus isWhatsapp="input" />
             <div class="form__cut form__cut-short"></div>
             <label for="colaboradores2" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
           </div>
@@ -479,15 +480,15 @@
       <div class="form__checkbox">
         <p class="form__check--title">Você já é cliente Caju?</p>
         
-        <div style="display: flex; gap: 9px;">
+        <div class="form__labels">
           <label class="radio-label">
             <input type="radio" name="option_cliente2" value="Sim">
-            <span class="radio-custom"></span>
+            <span class="form__radio-custom"></span>
             Sim
           </label>
           <label class="radio-label">
             <input type="radio" name="option_cliente2" value="Não">
-            <span class="radio-custom"></span>
+            <span class="form__radio-custom"></span>
             Não
           </label>
         </div>
