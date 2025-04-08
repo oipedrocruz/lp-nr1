@@ -33,19 +33,19 @@
     <div class="form__ctn">
 
         <div class="form__inputCtn input--1">
-          <input type="text" id="nome" name="nome" class="form__input" placeholder="" required />
+          <input type="text" id="nome" name="nome" class="form__input" placeholder="" required inputStatus />
           <div class="form__cut"></div>
           <label for="nome" class="form__placeholder">Digite aqui seu nome</label>
         </div>
 
         <div class="form__inputCtn input--2">
-          <input type="email" id="email" name="email" class="form__input" placeholder="" required />
+          <input type="email" id="email" name="email" class="form__input" placeholder="" required inputStatus />
           <div class="form__cut"></div>
           <label for="email" class="form__placeholder">Digite aqui seu e-mail</label>
         </div>
 
         <div class="form__inputCtn form__select--1 form__select--arrow">
-          <select id="valTrabalho" name="valTrabalho" class="form__select" name="" required>
+          <select id="valTrabalho" name="valTrabalho" class="form__select" name="" required inputStatus>
             <option value="" selected disabled></option> <!-- Opção vazia -->
             <option value="socio">Sócio / Diretor</option>
             <option value="gerente">Gerente / Coordenador(a)</option>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="form__inputCtn form__select--2 form__select--arrow">
-          <select id="cargo" name="cargo" class="form__select" name="" required>
+          <select id="cargo" name="cargo" class="form__select" name="" required inputStatus>
             <option value="" selected disabled></option> <!-- Opção vazia -->
             <option value="Estagiário">Estagiario</option>
             <option value="Assistente">Assistente</option>
@@ -73,25 +73,25 @@
         </div>
       
         <div class="form__inputCtn form__input--3">
-          <input type="tel" id="telefone" name="telefone" class="form__input" placeholder="" required oninput="formatarTelefone(this)"/>
+          <input type="tel" id="telefone" name="telefone" class="form__input" placeholder="" required inputStatus oninput="formatarTelefone(this)"/>
           <div class="form__cut form__cut-short"></div>
           <label for="telefone" class="form__placeholder">Digite aqui o seu número para contato</label>
         </div>
 
         <div class="form__inputCtn form__input--4">
-          <input id="empresa" name="empresa" class="form__input" type="text" placeholder="" required />
+          <input id="empresa" name="empresa" class="form__input" type="text" placeholder="" required inputStatus />
           <div class="form__cut form__cut-short"></div>
           <label for="empresa" class="form__placeholder">Digite aqui a sua empresa</label>
         </div>
 
         <div class="form__inputCtn form__input--5">
-          <input id="colaboradores" name="empresa" class="form__input" type="number" placeholder="" required />
+          <input id="colaboradores" name="empresa" class="form__input" type="number" placeholder="" required inputStatus />
           <div class="form__cut form__cut-short"></div>
           <label for="colaboradores" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
         </div>
 
         <div class="form__inputCtn form__select--3 form__select--arrow">
-          <select id="valDesafio" name="valDesafio" class="form__select" name="" required>
+          <select id="valDesafio" name="valDesafio" class="form__select" name="" required inputStatus>
             <option value="" selected disabled></option> <!-- Opção vazia -->
             <option value="socio">Estagiário</option>
             <option value="socio">Junior</option>
@@ -125,7 +125,7 @@
 
     <div class="form__submit--ctn">
       <input type="submit" value="Baixar material" id="submitButton" class="form__submit" />
-      <p class="form__disclamer">Ao continuar, esteja ciente da política de privacidade da Caju.</p>
+      <p class="form__disclamer">Ao continuar, esteja ciente da <a href="#" target="_blank">política de privacidade</a> da Caju.</p>
     </div>
   </div>
 </body>

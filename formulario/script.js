@@ -9,6 +9,17 @@
     return utmParameters;
 }
 
+
+document.querySelectorAll('.form__inputCtn').forEach(obj => {
+  obj.querySelector('[inputStatus]').addEventListener('focus', (e) => {
+    e.currentTarget.parentElement.classList.add('form__input--focus')
+  })
+
+  obj.querySelector('[inputStatus]').addEventListener('blur', (e) => {
+    e.currentTarget.parentElement.classList.remove('form__input--focus')
+  })
+})
+
 document.addEventListener("DOMContentLoaded", function () {
 
   let measurement_id__c = 'G-3RPJSREWE0'

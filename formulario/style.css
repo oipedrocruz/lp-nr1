@@ -75,7 +75,6 @@ body {
   padding: 4px 20px 0;
   width: 100%;
   outline: 1px solid var(--cinza--claro);
-  transition: .5s;
 }
 .form__select {
   appearance: none;
@@ -143,7 +142,7 @@ input[type=number] {
   transform-origin: 0 50%;
   transition: transform 350ms, color 200ms;
   left: 20px;
-  top: 17px;
+  top: 18px;
 }
 .form__input:focus ~ .form__placeholder,
 .form__input:not(:placeholder-shown) ~ .form__placeholder {
@@ -155,8 +154,12 @@ input[type=number] {
 .form__input:not(:placeholder-shown) ~ .form__placeholder {
   color: var(--black);
 }
-.form__input:focus{
+.form__input--focus .form__input, .form__input--focus .form__select {
   outline: 2px solid black;
+  color: black;
+}
+.form__input--focus .form__placeholder {
+  color: black;
   transition: .5s;
 }
 .form__placeholder:focus{
@@ -196,6 +199,9 @@ input[type=number] {
   color: #919191;
   text-align: center;
 }
+.form__disclamer a {
+  color: #919191;
+}
 .input--1 .form__cut {
   width: 122px;
 }
@@ -224,6 +230,10 @@ input[type=number] {
 .form__select--1 .form__placeholder {
   top: 18px;
 }
+.form__input--telefone {
+  display: flex;
+  position: relative;
+}
 /*  */
 .form__error {
   position: relative;
@@ -250,14 +260,10 @@ input[type=number] {
   background-size: contain;
 }
 .form__error-err .form__input, .form__error-err .form__select {
-  outline: 2px solid var(--amarelo);
+  outline: 2px solid var(--amarelo) !important;
 }
 .form__error-err .form__placeholder {
-  color: var(--amarelo--escuro);
-}
-.form__input--telefone {
-  display: flex;
-  position: relative;
+  color: var(--amarelo--escuro) !important;
 }
 /* Checkboxs */
 .form__checkbox {
