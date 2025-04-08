@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const cargo = isWhatsapp ? true : document.getElementById('cargo').value;
       const empresa = isWhatsapp ? document.getElementById('empresa2').value : document.getElementById('empresa').value;
       const colaboradores = isWhatsapp ? true : document.getElementById('colaboradores').value;
+      const dor = isWhatsapp ? true : document.getElementById('dor').value;
       const option_cliente = isWhatsapp ? document.querySelector('input[name="option_cliente2"]:checked') : document.querySelector('input[name="option_cliente"]:checked')
 
       // Formatar a data e hora no padrão brasileiro
@@ -99,7 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
           !cargo ||
           !empresa ||
           !option_cliente ||
-          !colaboradores
+          !colaboradores ||
+          !dor
           ) {
           alert("Por favor, preencha todos os campos obrigatórios.");
           return;
@@ -217,6 +219,7 @@ const message = {
   ['cargo']: "* Seu cargo é obrigatório",
   ['empresa']: "* Nome da empresa é obrigatório",
   ['colaboradores']: "* Quantidade de funcionários é obrigatório",
+  ['dor']: "* Maior dor é obrigatório",
 }
 
 const validadorInputs = (input, container, errorElement, isWhatsapp) => {
