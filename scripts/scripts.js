@@ -125,13 +125,13 @@ const openFormulario2 = () => {
   if(handleForms2) {
     formContent2.classList.remove('popup__lowFade--out')
     formContent2.classList.add('popup__lowFade--in')
-    formContent2.removeAttribute('showFormulario')
+    formContent2.removeAttribute('showFormulario2')
   } else {
     formContent2.classList.remove('popup__lowFade--in')
     formContent2.classList.add('popup__lowFade--out')
     setTimeout(() => {
       formContent2.classList.remove('popup__lowFade--out')
-      formContent2.setAttribute('showFormulario', '')
+      formContent2.setAttribute('showFormulario2', '')
     }, 1000);
   }
 

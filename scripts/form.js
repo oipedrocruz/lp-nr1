@@ -136,8 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
               if (json.statusCode === 200) {
 
                   // Mostra mensagem de email enviado...
-                  document.getElementById('showFormulario').setAttribute('showFormulario', showFormulario)
-                  document.getElementById('showSendMessage').setAttribute('showSendMessage', showSendMessage)
+                  document.getElementById('showFormulario').setAttribute('showFormulario', 'showFormulario')
+                  document.getElementById('showSendMessage').setAttribute('showSendMessage', 'showSendMessage')
                   if(obj.getAttribute('whatsapp') == true) window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
                   if (typeof dataLayer !== 'undefined') {
                       dataLayer.push({
@@ -226,14 +226,14 @@ const validadorInputs = (input, container, errorElement, isWhatsapp) => {
   
   let isValid = false
   
-  if (input.id === "email" && !validateEmail(input.value)) { // input
+  if (input.name === "email" && !validateEmail(input.value)) { // input
     container.classList.add('form__error-err')
     errorElement.textContent = "* Email corporativo é obrigatório"
     errorElement.style.display = "block"
     isValid = true
   } else if (input.value == '') { // Seletor
     container.classList.add('form__error-err')
-    errorElement.textContent = message[input.id]
+    errorElement.textContent = message[input.name]
     errorElement.style.display = "block"
     isValid = true
   }
