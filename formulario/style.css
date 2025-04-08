@@ -137,6 +137,7 @@ input[type=number] {
   font-family: sans-serif;
   font-weight: 400;
   line-height: 14px;
+  font-size: 14px;
   pointer-events: none;
   position: absolute;
   transform-origin: 0 50%;
@@ -146,10 +147,10 @@ input[type=number] {
 }
 .form__input:focus ~ .form__placeholder,
 .form__input:not(:placeholder-shown) ~ .form__placeholder {
-  transform: translateY(-22px) translateX(-2px) scale(0.75);
+  transform: translateY(-24px) translateX(-2px);
 }
 .form__select:valid ~ .form__placeholder {
-  transform: translateY(-22px) translateX(-2px) scale(0.75);
+  transform: translateY(-24px) translateX(-2px);
 }
 .form__input:not(:placeholder-shown) ~ .form__placeholder {
   color: var(--black);
@@ -203,29 +204,29 @@ input[type=number] {
   color: #919191;
 }
 .input--1 .form__cut {
-  width: 122px;
+  width: 140px;
 }
 .input--2 .form__cut {
-  width: 128px;
+  width: 146px;
 }
 .form__input--3 .form__cut {
-  width: 214px;
+  width: 246px;
 }
 .form__input--4 .form__cut {
-  width: 150px;
+  width: 172px;
 }
 .form__input--5 .form__cut {
-  width: 226px;
+  width: 262px;
 }
 /* Select */
 .form__select--1 .form__cut {
-  width: 198px;
+  width: 228px;
 }
 .form__select--2 .form__cut {
-  width: 128px;
+  width: 147px;
 }
 .form__select--3 .form__cut {
-  width: 168px;
+  width: 195px;
 }
 .form__select--1 .form__placeholder {
   top: 18px;
@@ -264,6 +265,9 @@ input[type=number] {
 }
 .form__error-err .form__placeholder {
   color: var(--amarelo--escuro) !important;
+}
+.form__error-err .form__input, .form__error-err .form__select {
+  padding-right: 60px;
 }
 /* Checkboxs */
 .form__checkbox {
