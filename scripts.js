@@ -1,5 +1,5 @@
- /* Cards */
- const data = [
+/* Cards */
+const data = [
   { // 1
     ['faq__element']: 'O que é a NR-1 e por que ela é importante?',
     ['faq__card--content']: `A Norma Regulamentadora nº 1 (NR-1) estabelece diretrizes gerais de segurança e saúde no trabalho, incluindo a obrigatoriedade de programas de bem-estar e gerenciamento de riscos ocupacionais. Estar em conformidade com a NR-1 é essencial para evitar penalidades e garantir um ambiente seguro para os colaboradores.`
@@ -30,11 +30,9 @@
   },
  
 ]
-
 const column1 = document.querySelector('.column--2')
 const column2 = document.querySelector('.column--1')
 let handle = 1
-
 data.forEach(obj => {
   const div = document.createElement('div')
   div.classList.add('faq__card')
@@ -47,11 +45,9 @@ data.forEach(obj => {
     </div>
     <div class="faq__card--content">${obj['faq__card--content']}</div>
   `
-
   handle = handle+1
   handle % 2 == 0 ? column2.appendChild(div) : column1.appendChild(div)
 })
-
 const faq__card = document.querySelectorAll('.faq__card')
 faq__card.forEach(obj => {
   obj.addEventListener('click', (e) => {
@@ -67,12 +63,9 @@ faq__card.forEach(obj => {
     }
   })
 })
-
-
 // Popup - Mostra quando o mouse sai da página
 const popup = document.getElementById('popup')
 let callPopup = true
-
 document.addEventListener('mouseleave', () => {
   if(!callPopup) return 
   const closed = document.querySelector('[closed]')
@@ -83,9 +76,7 @@ document.addEventListener('mouseleave', () => {
   }
   callPopup = false
 })
-
 const closed = document.getElementById('popup')
-
 const showPopup = () => {
   console.log('Fechar popup');
   closed.classList.remove('popup__lowFade--in')
@@ -95,11 +86,9 @@ const showPopup = () => {
     popup.setAttribute('closed', '')
   }, 1000);
 }
-
 // Popup formulário
 let handleForms = true
 const formContent = document.getElementById('formContent')
-
 const openFormulario = () => {
   console.log(formContent);
   if(handleForms) {
@@ -114,13 +103,10 @@ const openFormulario = () => {
       formContent.setAttribute('showFormulario', '')
     }, 1000);
   }
-
   handleForms = !handleForms
 }
-
 let handleForms2 = true
 const formContent2 = document.getElementById('formContent2')
-
 const openFormulario2 = () => {
   if(handleForms2) {
     formContent2.classList.remove('popup__lowFade--out')
@@ -134,17 +120,12 @@ const openFormulario2 = () => {
       formContent2.setAttribute('showFormulario2', '')
     }, 1000);
   }
-
   handleForms2 = !handleForms2
 }
-
-
 // Scroll personalizado: O GSAP é utilizado para animar o scroll suave
 gsap.registerPlugin(ScrollToPlugin);
-
 let scrollY = 0;
 const scrollSpeed = 70;  // A velocidade da rolagem personalizada
-
 // Função para scroll suave
 function customScroll() {
   window.addEventListener("wheel", function(event) {
@@ -158,16 +139,7 @@ function customScroll() {
     });
   }, { passive: false });
 }
-
 customScroll();  // Inicializa o scroll suave
-
-function abrirLink() {
-  console.log('aqui');
-  
-  window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
-}
-
-
 
 // Função para obter parâmetros UTM da URL
 function getUTMParameters() {
@@ -179,21 +151,16 @@ function getUTMParameters() {
   utmParameters["str_utm_term"] = urlParams.get("utm_term") || "";
   return utmParameters;
 }
-
 document.querySelectorAll('.form__inputCtn').forEach(obj => {
   obj.querySelector('[inputStatus]').addEventListener('focus', (e) => {
     e.currentTarget.parentElement.classList.add('form__input--focus')
   })
-
   obj.querySelector('[inputStatus]').addEventListener('blur', (e) => {
     e.currentTarget.parentElement.classList.remove('form__input--focus')
   })
 })
-
 document.addEventListener("DOMContentLoaded", function () {
-
   let measurement_id__c = 'G-3RPJSREWE0'
-
   let client_id__c = function get_ga_clientid() {
       var cookie = {};
       document.cookie.split(';').forEach(function (el) {
@@ -204,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       return cookie["_ga"].substring(6);
   }
-
   var cookie = {};
   document.cookie.split(';').forEach(function (el) {
       var splitCookie = el.split('=');
@@ -223,16 +189,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       return cookie["_ga"].substring(6);
   }
-
   let botaoEnviar = document.querySelectorAll("#submitButton");
   botaoEnviar.forEach(obj => {
-
     obj.addEventListener("click", function (e) {
       e.preventDefault();
       const isWhatsapp = obj.getAttribute('whatsapp') == "true"
-
       let isSomethingMissing = false
-
       inputs.forEach(input => {
         const errorElement = input.parentElement.querySelector(".form__error")
         errorElement.style.display = "none"
@@ -246,22 +208,18 @@ document.addEventListener("DOMContentLoaded", function () {
           errorElement.style.display = 'none'
         })
       })
-
       const checkboxs = isWhatsapp ? document.querySelector('input[name="option_cliente2"]:checked') : document.querySelector('input[name="option_cliente"]:checked')
-
       if (isSomethingMissing || checkboxs == null) {
         alert('Preencha todos os campos antes de processeguir')
         return // Caso esteja faltando algo, impede a função de seguir
       }
-
       const nome = isWhatsapp ? document.getElementById('nome2').value : document.getElementById('nome').value;
       const email = isWhatsapp ? document.getElementById('email2').value : document.getElementById('email').value;
       const cargo = isWhatsapp ? true : document.getElementById('cargo').value;
       const empresa = isWhatsapp ? document.getElementById('empresa2').value : document.getElementById('empresa').value;
-      const colaboradores = isWhatsapp ? true : document.getElementById('colaboradores').value;
+      const colaboradores = isWhatsapp ? document.getElementById('colaboradores2').value : document.getElementById('colaboradores').value;
       const dor = isWhatsapp ? true : document.getElementById('dor').value;
       const option_cliente = isWhatsapp ? document.querySelector('input[name="option_cliente2"]:checked') : document.querySelector('input[name="option_cliente"]:checked')
-
       // Formatar a data e hora no padrão brasileiro
       let dataHoraFormatada = new Date().toLocaleString("pt-BR");
       if (
@@ -285,17 +243,17 @@ document.addEventListener("DOMContentLoaded", function () {
           str_lp_name: 'Manual do PAT - 2025',
           str_user_name: nome,
           str_email: email,
-          str_cargo: cargo,
+          str_cargo: cargo == true ? '' : cargo,
           str_company_name: empresa,
           str_employees_number: colaboradores,
           fl_Client: option_cliente.value,
+          str_desafio: dor == true ? '' : dor,
           dt_created_date: dataHoraFormatada,
           measurement_id__c: measurement_id__c,
           client_id__c: client_id__c(),
           ...utmParameters// Inclui os parâmetros UTM mapeados corretamente
       });
-
-      fetch("https://conteudo.caju.com.br/integracao-pat-2025", {
+      fetch("https://conteudo.caju.com.br/integration-consolidado-lps", {
           method: "POST",
           body: data,
           headers: {
@@ -307,9 +265,13 @@ document.addEventListener("DOMContentLoaded", function () {
               const json = JSON.parse(resposta.replace("System.Collections.ArrayList", ""))
               if (json.statusCode === 200) {
 
-                  // Mostra mensagem de email enviado...
-                  document.getElementById('showFormulario').setAttribute('showFormulario', 'showFormulario')
-                  document.getElementById('showSendMessage').setAttribute('showSendMessage', 'showSendMessage')
+                  if(isWhatsapp) {
+                    window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
+                  } else {
+                    // Mostra mensagem de email enviado...
+                    document.getElementById('showFormulario').setAttribute('showFormulario', 'showFormulario')
+                    document.getElementById('showSendMessage').setAttribute('showSendMessage', 'showSendMessage')
+                  }
                   if(obj.getAttribute('whatsapp') == true) window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
                   if (typeof dataLayer !== 'undefined') {
                       dataLayer.push({
@@ -327,9 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 }) 
 });
-
 //split email domain
-
 function domainEmail(email) {
   const dominios = [
       'gmail.com',
@@ -354,7 +314,6 @@ function domainEmail(email) {
   } else {
       return 'corp'
   }
-
 }
 //input colaboradores, para não permitir letras/caracteres especiais e delimitar a quantidade de números inseridos
 function onlyNumber(input) {
@@ -364,25 +323,19 @@ function onlyNumber(input) {
       return
   }
 }
-
 document.getElementById('nome').addEventListener('input', (event) => {
   // Remove todos os caracteres que não são letras
   const regex = /[0-9]/g;
   event.target.value = event.target.value.replace(regex, '').replace(/[!@#$%^&\(\)\_\=\+\-\¨\<\,\>\.\:\;\~\}\]\[\´\{\**]/g, "");
-
 });
-
 function validacaoEmail(email) {
-
   usuario = email.value.substring(0, email.value.indexOf("@"));
   dominio = email.value.substring(email.value.indexOf("@") + 1, email.value.length);
-
   if (!(/^\S+@\S+\.\S+$/.test(email.value))) {
       alert('O e-mail está inválido!')
       return
   }
 }
-
 /* Scripts do formulário */
 const message = {
   ['nome']: "* Nome é obrigatório",
@@ -391,7 +344,6 @@ const message = {
   ['colaboradores']: "* Quantidade de funcionários é obrigatório",
   ['dor']: "* Maior dor é obrigatório",
 }
-
 const validadorInputs = (input, container, errorElement, isWhatsapp) => {
   
   const validadeWhatsapp = input.getAttribute('isWhatsapp') == 'input'
@@ -412,9 +364,7 @@ const validadorInputs = (input, container, errorElement, isWhatsapp) => {
   }
   return isValid
 }
-
 const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-
 const inputs = document.querySelectorAll(".form__input, .form__select")
 inputs.forEach(input => { // Criar elementos de erro para cada campo
   
@@ -422,14 +372,12 @@ inputs.forEach(input => { // Criar elementos de erro para cada campo
   errorElement.classList.add("form__error")
   errorElement.style.display = "none"
   input.parentElement.appendChild(errorElement)
-
   errorElement.parentElement.querySelector(".form__error")
   const container = input.closest(".form__inputCtn")
   
   input.addEventListener('blur', () => {
     validadorInputs(input, container, errorElement)
   })
-
   input.addEventListener('click', () => {
     container.classList.remove('form__error-err')
     errorElement.style.display = 'none'
@@ -439,7 +387,6 @@ inputs.forEach(input => { // Criar elementos de erro para cada campo
 document.getElementById("nome").addEventListener("input", (e) => {
   e.currentTarget.value = e.currentTarget.value.replace(/[^a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '')
 })
-
 document.getElementById("colaboradores").addEventListener("input", (e) => {
   e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '') // Remove tudo que não for número
 })
