@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       const utmParameters = getUTMParameters()
       const data = JSON.stringify({
-          str_lp_name: 'Manual do PAT - 2025',
+          str_lp_name: 'NR-1 Conversão - 2025',
           str_user_name: nome,
           str_email: email,
           str_cargo: cargo == true ? '' : cargo,
@@ -266,13 +266,13 @@ document.addEventListener("DOMContentLoaded", function () {
               if (json.statusCode === 200) {
 
                   if(isWhatsapp) {
-                    window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
+                    window.open('https://bit.ly/NR1_adequacao', '_blank'); // Abre o link em uma nova aba
                   } else {
                     // Mostra mensagem de email enviado...
                     document.getElementById('showFormulario').setAttribute('showFormulario', 'showFormulario')
                     document.getElementById('showSendMessage').setAttribute('showSendMessage', 'showSendMessage')
                   }
-                  if(obj.getAttribute('whatsapp') == true) window.open('https://bit.ly/3FE3Kow', '_blank'); // Abre o link em uma nova aba
+                  if(obj.getAttribute('whatsapp') == true) window.open('https://bit.ly/NR1_adequacao', '_blank'); // Abre o link em uma nova aba
                   if (typeof dataLayer !== 'undefined') {
                       dataLayer.push({
                           event: "e_003_001_001_059_018_001",
@@ -281,8 +281,8 @@ document.addEventListener("DOMContentLoaded", function () {
                           }
                       });
                   }
-                  window.location.href = "https://conteudo.caju.com.br/ebook-pat-2025-a-caminho";
-              } else {
+/*                   window.location.href = "https://conteudo.caju.com.br/ebook-pat-2025-a-caminho";
+ */              } else {
                   alert("Erro ao inserir dados.");
               }
           }).catch(err => console.log(err));
