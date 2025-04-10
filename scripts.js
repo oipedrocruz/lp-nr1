@@ -92,10 +92,12 @@ const formContent = document.getElementById('formContent')
 const openFormulario = () => {
   console.log(formContent);
   if(handleForms) {
+    document.body.style.overflow = 'hidden'
     formContent.classList.remove('popup__lowFade--out')
     formContent.classList.add('popup__lowFade--in')
     formContent.removeAttribute('showFormulario')
   } else {
+    document.body.style.overflow = 'initial'
     formContent.classList.remove('popup__lowFade--in')
     formContent.classList.add('popup__lowFade--out')
     setTimeout(() => {
@@ -109,10 +111,12 @@ let handleForms2 = true
 const formContent2 = document.getElementById('formContent2')
 const openFormulario2 = () => {
   if(handleForms2) {
+    document.body.style.overflow = 'hidden'
     formContent2.classList.remove('popup__lowFade--out')
     formContent2.classList.add('popup__lowFade--in')
     formContent2.removeAttribute('showFormulario2')
   } else {
+    document.body.style.overflow = 'initial'
     formContent2.classList.remove('popup__lowFade--in')
     formContent2.classList.add('popup__lowFade--out')
     setTimeout(() => {

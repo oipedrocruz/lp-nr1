@@ -21,19 +21,22 @@
                   'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-MSKBQ9FX');</script>
 
-  <link rel="stylesheet" href="https://conteudo.caju.com.br/style-nr1-conversao">
+  <!-- <link rel="stylesheet" href="https://conteudo.caju.com.br/style-nr1-conversao"> -->
+   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Header -->
+  <header class="banner__header">
+    <a data-hash="e_003_001_037_002_057_001" href="https://caju.com.br/" target="_blank">
+      <img class="banner__logo" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/cb719f09-f4b4-4754-8538-89a322ee8a43.png" width="300" height="32" alt="">
+    </a>
+    <button class="button__white" onclick="openFormulario()">Fale com especialista</button>
+  </header>
 
   <!-- Banner -->
   <section class="banner">
     <div class="max__width">
-      <div class="banner__header">
-        <a data-hash="e_003_001_037_002_057_001" href="https://caju.com.br/" target="_blank">
-          <img class="banner__logo" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/cb719f09-f4b4-4754-8538-89a322ee8a43.png" width="300" height="32" alt="">
-        </a>
-        <button class="button__white" onclick="openFormulario()">Fale com especialista</button>
-      </div>
 
       <div class="banner__grid">
         <div class="banner__col--1">
@@ -71,6 +74,9 @@
   <!-- Empresa -->
   <section class="empresa max__width">
     
+    
+    <img class="empresa__img mobile" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/ff9124c3-5b2d-40e9-b085-999e5024e697.png" width="164" height="80" alt="">
+
     <div class="empresa__col--1">
       
       <p class="empresa__title">Faça o diagnóstico da sua empresa</p>
@@ -81,7 +87,7 @@
 
     <div class="empresa__col--2">
       
-      <img class="empresa__img" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/ff9124c3-5b2d-40e9-b085-999e5024e697.png" width="164" height="80" alt="">
+      <img class="empresa__img desktop" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/ff9124c3-5b2d-40e9-b085-999e5024e697.png" width="164" height="80" alt="">
 
       <img class="empresa__fita" width="200" height="40" src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/1e96e540-72a5-4c4b-8ea3-0b84c7b2d7f8.png" alt="">
 
@@ -358,174 +364,172 @@
   </div>
 
   <!-- Forms -->
-  <div class="forms__popup" id="formContent">
+  <div class="forms__overlay" id="formContent">
 
-    <button class="forms__close" onclick="openFormulario()">
-      <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/2d72e1db-91b1-4437-ac4b-5e9114ec507a.png" width="48" height="48" alt="">
-    </button>
-
-    <div class="form" id="showFormulario">
-      <p class="form__title">Escolha a solução ideal!</p>
-      <div class="form__ctn">
+    <div class="forms__popup">
+      <button class="forms__close" onclick="openFormulario()">
+        <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/2d72e1db-91b1-4437-ac4b-5e9114ec507a.png" width="48" height="48" alt="">
+      </button>
   
-          <div class="form__inputCtn input--1">
-            <input type="text" id="nome" name="nome" class="form__input" placeholder="" required inputStatus />
-            <div class="form__cut"></div>
-            <label for="nome" class="form__placeholder">Digite aqui seu nome</label>
-          </div>
+      <div class="form" id="showFormulario">
+        <p class="form__title">Escolha a solução ideal!</p>
+        <div class="form__ctn">
+    
+            <div class="form__inputCtn input--1">
+              <input type="text" id="nome" name="nome" class="form__input" placeholder="" required inputStatus />
+              <div class="form__cut"></div>
+              <label for="nome" class="form__placeholder">Digite aqui seu nome</label>
+            </div>
+    
+            <div class="form__inputCtn form__input--4">
+              <input type="text" id="empresa" name="empresa" class="form__input"placeholder="" required inputStatus maxlength="100" />
+              <div class="form__cut form__cut-short"></div>
+              <label for="empresa" class="form__placeholder">Digite aqui a sua empresa</label>
+            </div>
+    
+            <div class="form__inputCtn input--2">
+              <input type="email" id="email" name="email" class="form__input" placeholder="" required inputStatus onblur="validacaoEmail(this)"/>
+              <div class="form__cut"></div>
+              <label for="email" class="form__placeholder">Digite aqui seu e-mail corporativo</label>
+            </div>
+            
+            <div class="form__inputCtn form__input--5">
+              <input type="text" id="colaboradores" name="colaboradores" required inputStatus minlength="1" maxlength="5" class="form__input"  oninput="onlyNumber(this)" placeholder="" />
+              <div class="form__cut form__cut-short"></div>
+              <label for="colaboradores" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
+            </div>
+    
+            <div class="form__inputCtn form__select--1 form__select--arrow">
+              <select id="cargo" name="cargo" class="form__select" name="" required inputStatus>
+                <option value="" selected disabled></option> <!-- Opção vazia -->
+                <option value="socio/diretor">Sócio / Diretor</option>
+                <option value="gerente/coordenador">Gerente / Coordenador(a)</option>
+                <option value="analista/analista">Analista</option>
+                <option value="assistente">Assistente</option>
+                <option value="estagiarios">Estagiário</option>
+                <option value="outros">Outros</option>
+              </select>
+              <div class="form__cut"></div>
+              <label for="cargo" class="form__placeholder">Selecione o seu cargo</label>
+            </div>
   
-          <div class="form__inputCtn form__input--4">
-            <input type="text" id="empresa" name="empresa" class="form__input"placeholder="" required inputStatus maxlength="100" />
-            <div class="form__cut form__cut-short"></div>
-            <label for="empresa" class="form__placeholder">Digite aqui a sua empresa</label>
-          </div>
+            <div class="form__inputCtn form__select--2 form__select--arrow">
+              <select id="dor" name="dor" class="form__select" name="" required inputStatus>
+                <option value="" selected disabled></option> <!-- Opção vazia -->
+                <option value="Gestao de beneficios">Gestão de benefícios</option>
+                <option value="Gestao de despesas">Gestão de despesas</option>
+                <option value="Reconhecimento e engajamento">Reconhecimento e engajamento</option>
+                <option value="Integracao de plataformas de RH">Integração de plataformas de RH</option>
+              </select>
+              <div class="form__cut"></div>
+              <label for="dor" class="form__placeholder">Qual a maior dor do seu RH?</label>
+            </div>
   
-          <div class="form__inputCtn input--2">
-            <input type="email" id="email" name="email" class="form__input" placeholder="" required inputStatus onblur="validacaoEmail(this)"/>
-            <div class="form__cut"></div>
-            <label for="email" class="form__placeholder">Digite aqui seu e-mail corporativo</label>
-          </div>
-          
-          <div class="form__inputCtn form__input--5">
-            <input type="text" id="colaboradores" name="colaboradores" required inputStatus minlength="1" maxlength="5" class="form__input"  oninput="onlyNumber(this)" placeholder="" />
-            <div class="form__cut form__cut-short"></div>
-            <label for="colaboradores" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
-          </div>
-  
-          <div class="form__inputCtn form__select--1 form__select--arrow">
-            <select id="cargo" name="cargo" class="form__select" name="" required inputStatus>
-              <option value="" selected disabled></option> <!-- Opção vazia -->
-              <option value="socio/diretor">Sócio / Diretor</option>
-              <option value="gerente/coordenador">Gerente / Coordenador(a)</option>
-              <option value="analista/analista">Analista</option>
-              <option value="assistente">Assistente</option>
-              <option value="estagiarios">Estagiário</option>
-              <option value="outros">Outros</option>
-            </select>
-            <div class="form__cut"></div>
-            <label for="cargo" class="form__placeholder">Selecione o seu cargo</label>
-          </div>
-
-          <div class="form__inputCtn form__select--2 form__select--arrow">
-            <select id="dor" name="dor" class="form__select" name="" required inputStatus>
-              <option value="" selected disabled></option> <!-- Opção vazia -->
-              <option value="Gestao de beneficios">Gestão de benefícios</option>
-              <option value="Gestao de despesas">Gestão de despesas</option>
-              <option value="Reconhecimento e engajamento">Reconhecimento e engajamento</option>
-              <option value="Integracao de plataformas de RH">Integração de plataformas de RH</option>
-            </select>
-            <div class="form__cut"></div>
-            <label for="dor" class="form__placeholder">Qual a maior dor do seu RH?</label>
-          </div>
-
-      </div>
-  
-      <div class="form__checkbox">
-        <p class="form__check--title">Você já é cliente Caju?</p>
-        
-        <div class="form__labels">
-          <label class="radio-label">
-            <input type="radio" name="option_cliente" value="Sim">
-            <span class="form__radio-custom"></span>
-            Sim
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="option_cliente" value="Não">
-            <span class="form__radio-custom"></span>
-            Não
-          </label>
         </div>
-  
-        
+    
+        <div class="form__checkbox">
+          <p class="form__check--title">Você já é cliente Caju?</p>
+          
+          <div class="form__labels">
+            <label class="radio-label">
+              <input type="radio" name="option_cliente" value="Sim">
+              <span class="form__radio-custom"></span>
+              Sim
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="option_cliente" value="Não">
+              <span class="form__radio-custom"></span>
+              Não
+            </label>
+          </div>
+    
+          
+        </div>
+    
+        <div class="form__submit--ctn">
+          <input type="submit" value="Falar com especialista" id="submitButton" class="form__submit" />
+          <p class="form__disclamer">Ao continuar, esteja ciente da <a data-hash="e_003_001_001_059_165_001" href="https://www.caju.com.br/privacidade" target="_blank">política de privacidade</a> da Caju.</p>
+        </div>
       </div>
   
-      <div class="form__submit--ctn">
-        <input type="submit" value="Falar com especialista" id="submitButton" class="form__submit" />
-        <p class="form__disclamer">Ao continuar, esteja ciente da <a data-hash="e_003_001_001_059_165_001" href="https://www.caju.com.br/privacidade" target="_blank">política de privacidade</a> da Caju.</p>
-      </div>
-    </div>
-
-    <div class="form__container" id="showSendMessage">
-      <div class="form__send">
-        <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/4385a414-e7e0-4d6c-b519-088707e4cb60.png" width="44" height="60" alt="" class="form__castanha">
-        <p class="form__message">Informações recebidas!</p>
-        <p class="form__breve">Em breve, nosso time entrará em contato.</p>
+      <div class="form__container" id="showSendMessage">
+        <div class="form__send">
+          <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/4385a414-e7e0-4d6c-b519-088707e4cb60.png" width="44" height="60" alt="" class="form__castanha">
+          <p class="form__message">Informações recebidas!</p>
+          <p class="form__breve">Em breve, nosso time entrará em contato.</p>
+        </div>
       </div>
     </div>
 
   </div>
 
    <!-- Forms 2 -->
-   <div class="forms__popup" id="formContent2">
+   <div class="forms__overlay" id="formContent2">
 
-    <button class="forms__close" onclick="openFormulario2()">
-      <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/2d72e1db-91b1-4437-ac4b-5e9114ec507a.png" width="48" height="48" alt="">
-    </button>
+     <div class="forms__popup">
+      <button class="forms__close" onclick="openFormulario2()">
+        <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/2d72e1db-91b1-4437-ac4b-5e9114ec507a.png" width="48" height="48" alt="">
+      </button>
 
-    <div class="form" id="showFormulario2">
-      <p class="form__title">Escolha a solução ideal!</p>
-      <div class="form__ctn">
-  
-          <div class="form__inputCtn input--1">
-            <input type="text" id="nome2" name="nome" class="form__input" placeholder="" required inputStatus isWhatsapp="input" />
-            <div class="form__cut"></div>
-            <label for="nome2" class="form__placeholder">Digite aqui seu nome</label>
+      <div class="form" id="showFormulario2">
+        <p class="form__title">Escolha a solução ideal!</p>
+        <div class="form__ctn">
+            <div class="form__inputCtn input--1">
+              <input type="text" id="nome2" name="nome" class="form__input" placeholder="" required inputStatus isWhatsapp="input" />
+              <div class="form__cut"></div>
+              <label for="nome2" class="form__placeholder">Digite aqui seu nome</label>
+            </div>
+            <div class="form__inputCtn form__input--4">
+              <input type="text" id="empresa2" name="empresa" class="form__input" placeholder="" required inputStatus isWhatsapp="input" maxlength="100" />
+              <div class="form__cut form__cut-short"></div>
+              <label for="empresa2" class="form__placeholder">Digite aqui a sua empresa</label>
+            </div>
+            <div class="form__inputCtn input--2">
+              <input type="email" id="email2" name="email" class="form__input" placeholder="" required inputStatus isWhatsapp="input" onblur="validacaoEmail(this)"/>
+              <div class="form__cut"></div>
+              <label for="email2" class="form__placeholder">Digite aqui seu e-mail corporativo</label>
+            </div>
+            <div class="form__inputCtn form__input--5">
+              <input type="text" id="colaboradores2" name="colaboradores" minlength="1" maxlength="5" class="form__input" oninput="onlyNumber(this)" placeholder="" required inputStatus isWhatsapp="input" />
+              <div class="form__cut form__cut-short"></div>
+              <label for="colaboradores2" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
+            </div>
+        </div>
+        <div class="form__checkbox">
+          <p class="form__check--title">Você já é cliente Caju?</p>
+     
+          <div class="form__labels">
+            <label class="radio-label">
+              <input type="radio" name="option_cliente2" value="Sim">
+              <span class="form__radio-custom"></span>
+              Sim
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="option_cliente2" value="Não">
+              <span class="form__radio-custom"></span>
+              Não
+            </label>
           </div>
-  
-          <div class="form__inputCtn form__input--4">
-            <input type="text" id="empresa2" name="empresa" class="form__input" placeholder="" required inputStatus isWhatsapp="input" maxlength="100" />
-            <div class="form__cut form__cut-short"></div>
-            <label for="empresa2" class="form__placeholder">Digite aqui a sua empresa</label>
-          </div>
-  
-          <div class="form__inputCtn input--2">
-            <input type="email" id="email2" name="email" class="form__input" placeholder="" required inputStatus isWhatsapp="input" onblur="validacaoEmail(this)"/>
-            <div class="form__cut"></div>
-            <label for="email2" class="form__placeholder">Digite aqui seu e-mail corporativo</label>
-          </div>
-
-          <div class="form__inputCtn form__input--5">
-            <input type="text" id="colaboradores2" name="colaboradores" minlength="1" maxlength="5" class="form__input" oninput="onlyNumber(this)" placeholder="" required inputStatus isWhatsapp="input" />
-            <div class="form__cut form__cut-short"></div>
-            <label for="colaboradores2" class="form__placeholder">Quantos funcionários tem sua empresa?</label>
-          </div>
-      </div>
-  
-      <div class="form__checkbox">
-        <p class="form__check--title">Você já é cliente Caju?</p>
-        
-        <div class="form__labels">
-          <label class="radio-label">
-            <input type="radio" name="option_cliente2" value="Sim">
-            <span class="form__radio-custom"></span>
-            Sim
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="option_cliente2" value="Não">
-            <span class="form__radio-custom"></span>
-            Não
-          </label>
+        </div>
+        <div class="form__submit--ctn">
+          <button type="submit" value="Fale com o vendedor" id="submitButton" whatsapp="true" class="form__submit--whats">
+            <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/e6dee819-f3ee-47d6-9a88-c91b0567b941.png" width="24" height="24" alt="">
+            <p>Fale com o vendedor</p>
+          </button>
+          <p class="form__disclamer">Ao continuar, esteja ciente da <a data-hash="e_003_001_001_059_165_001" href="https://www.caju.com.br/privacidade" target="_blank">política de privacidade</a> da Caju.</p>
         </div>
       </div>
-  
-      <div class="form__submit--ctn">
-        <button type="submit" value="Fale com o vendedor" id="submitButton" whatsapp="true" class="form__submit--whats">
-          <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/e6dee819-f3ee-47d6-9a88-c91b0567b941.png" width="24" height="24" alt="">
-          <p>Fale com o vendedor</p>
-        </button>
-        <p class="form__disclamer">Ao continuar, esteja ciente da <a data-hash="e_003_001_001_059_165_001" href="https://www.caju.com.br/privacidade" target="_blank">política de privacidade</a> da Caju.</p>
-      </div>
-    </div>
 
-    <div class="form__container" id="showSendMessage">
-      <div class="form__send">
-        <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/4385a414-e7e0-4d6c-b519-088707e4cb60.png" width="44" height="60" alt="" class="form__castanha">
-        <p class="form__message">Informações recebidas!</p>
-        <p class="form__breve">Em breve, nosso time entrará em contato.</p>
+      <div class="form__container" id="showSendMessage">
+        <div class="form__send">
+          <img src="https://image.fala.caju.com.br/lib/fe3211737164047b701270/m/1/4385a414-e7e0-4d6c-b519-088707e4cb60.png" width="44" height="60" alt="" class="form__castanha">
+          <p class="form__message">Informações recebidas!</p>
+          <p class="form__breve">Em breve, nosso time entrará em contato.</p>
+        </div>
       </div>
-    </div>
-
-  </div>
+     
+       </div>
+   </div>
 
 </body>
 
@@ -533,6 +537,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/ScrollToPlugin.min.js"></script>
 
-<script src="https://conteudo.caju.com.br/script-nr1-conversao"></script>
+<!-- <script src="https://conteudo.caju.com.br/script-nr1-conversao"></script> -->
+<script src="/scripts.js"></script>
 
 </html>
