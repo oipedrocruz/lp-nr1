@@ -1,4 +1,4 @@
-/* Cards */
+/* Cardss */
 const data = [
   { // 1
     ['faq__element']: 'O que é a NR-1 e por que ela é importante?',
