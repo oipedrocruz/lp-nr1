@@ -126,24 +126,6 @@ const openFormulario2 = () => {
   }
   handleForms2 = !handleForms2
 }
-// Scroll personalizado: O GSAP é utilizado para animar o scroll suave
-gsap.registerPlugin(ScrollToPlugin);
-let scrollY = 0;
-const scrollSpeed = 70;  // A velocidade da rolagem personalizada
-// Função para scroll suave
-function customScroll() {
-  window.addEventListener("wheel", function(event) {
-    event.preventDefault();
-    if (event.deltaY > 0) scrollY += scrollSpeed;
-    else scrollY -= scrollSpeed;
-    scrollY = Math.max(0, Math.min(scrollY, document.body.scrollHeight - window.innerHeight));
-    gsap.to(window, {
-      scrollTo: { y: scrollY, autoKill: false }, 
-      ease: "power2.out"
-    });
-  }, { passive: false });
-}
-customScroll();  // Inicializa o scroll suave
 
 // Função para obter parâmetros UTM da URL
 function getUTMParameters() {
